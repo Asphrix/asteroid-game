@@ -20,6 +20,11 @@ def main():
     AsteroidField.containers = (updatable)
     Shot.containers = (shots, updatable, drawable)
 
+    score = 0
+    score_font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
+    score_surf = score_font.render(f"Score:{score}", False, "white")
+
+
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 10)
     meteors = AsteroidField()
 
@@ -44,8 +49,11 @@ def main():
                 if shot.check_collisions(asteroid):
                     shot.kill()
                     asteroid.split()
-
+                    score += asteroid.split() // 10
+                    score_surf = score_font.render(f"Score:{score}", False, "white")
                     
+        screen.blit(score_surf, (20, 20))
+        
         pygame.display.flip()
 
         

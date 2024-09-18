@@ -1,13 +1,14 @@
 from circleshape import *
 from constants import *
 from shot import * 
+import pygame
 class Player(CircleShape):
 
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
+        pygame.font.init()
         self.rotation = 0
         self.time = 0
-        
     
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
